@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe Spellcop do
-  it 'has a version number' do
-    expect(Spellcop::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'should find typos' do
+    file = Spellcop::FileChecker.new('spec/files/example.rb')
+    file.check!
+    expect(file.warnings.size).to be > 0
   end
 end
