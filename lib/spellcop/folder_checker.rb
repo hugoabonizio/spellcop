@@ -17,6 +17,7 @@ module Spellcop
         @warnings << { file: file, warnings: FileChecker.new(file).check! }
         @files << file
       end
+      @warnings
     end
   end
 end

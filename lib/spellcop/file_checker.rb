@@ -20,6 +20,7 @@ module Spellcop
           end
         end
       end
+      @warnings
     end
   end
 end

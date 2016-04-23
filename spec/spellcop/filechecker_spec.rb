@@ -12,7 +12,6 @@ describe Spellcop::FileChecker do
     end
     
     it 'should find expected typos' do
-      puts @file.warnings
       ['tihs', 'worg', 'wordl'].each_with_index do |typo, index|
         expect(@file.warnings[index][:word]).to eq typo
       end
