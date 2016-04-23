@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require './lib/spellcop'
+
+class Spellcop::CLI
+#   desc 'spellcop filename|foldername', 'a file or a folder to search for typos'
+  def self.check(name)
+    if File.file?(name)
+      puts Spellcop::FileChecker.new(name).check!
+    else
+      puts Spellcop::FolderChecker.new(name).check!
+    end
+  end
+end
+
+if ARGV.empty?
+  puts 'usage...'
+else
+  Spellcop::CLI.check(ARGV.join ' ')
+end
