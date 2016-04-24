@@ -16,7 +16,7 @@ module Spellcop
           word = result.compact.first
 #           puts "wrong: #{word}" if word == 'tihs'
           if !@dict.check? word and !word.spellcop_ignore?
-            @warnings << { word: word, suggest: @dict.suggest(word) }
+            @warnings << { word: word, suggestions: @dict.suggest(word) }
           end
         end
       end

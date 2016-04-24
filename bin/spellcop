@@ -1,15 +1,26 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'bundler/setup'
+require 'colorize'
 require './lib/spellcop'
 
 class Spellcop::CLI
 #   desc 'spellcop filename|foldername', 'a file or a folder to search for typos'
-  def self.check(name)
+  def check!(name)
     if File.file?(name)
-      puts Spellcop::FileChecker.new(name).check!
+      @warnings = [{ file: name, warnings: Spellcop::FileChecker.new(name).check! }]
     else
-      puts Spellcop::FolderChecker.new(name).check!
+      @warnings = Spellcop::FolderChecker.new(name).check!
+    end
+    show_results
+  end
+  
+  def show_results
+    @warnings.each do |file|
+      puts "#{file[:file].colorize :red}:"
+      file[:warnings].each do |warning|
+        puts "\t#{warning[:word].colorize(:red).bold} (#{warning[:suggestions].first(3).join(', ')}...)"
+      end
     end
   end
 end
@@ -17,5 +28,5 @@ end
 if ARGV.empty?
   puts 'usage...'
 else
-  Spellcop::CLI.check(ARGV.join ' ')
+  Spellcop::CLI.new.check!(ARGV.join ' ')
 end

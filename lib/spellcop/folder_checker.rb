@@ -14,7 +14,8 @@ module Spellcop
     
     def check!
       Dir[@folder].each do |file|
-        @warnings << { file: file, warnings: FileChecker.new(file).check! }
+        result = { file: file, warnings: FileChecker.new(file).check! }
+        @warnings << result unless result[:warnings].empty?
         @files << file
       end
       @warnings
