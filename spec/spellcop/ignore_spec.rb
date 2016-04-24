@@ -14,5 +14,9 @@ describe Spellcop do
       expect('to_a'.spellcop_ignore?).to eq true
       expect('page_size'.spellcop_ignore?).to eq true
     end
+    
+    it 'should ignore words with less than 4 chars' do
+      expect('acc'.spellcop_ignore?).to eq true
+    end
   end
 end
