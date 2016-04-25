@@ -9,7 +9,7 @@ module Spellcop
     end
     
     def check!
-      comments = @file.scan /#(.*)/
+      comments = @file.scan /(\s#(.*)|^#(.*))/
       comments.each do |comment|
         words = comment.first.strip.scan /@(\w+)|\[(\w+)|(\w+)/
         words.each do |result|

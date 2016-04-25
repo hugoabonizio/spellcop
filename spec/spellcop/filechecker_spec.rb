@@ -8,7 +8,7 @@ describe Spellcop::FileChecker do
     end
     
     it 'should find typos' do
-      expect(@file.warnings.size).to eq 4
+      expect(@file.warnings.size).to eq 3
     end
     
     it 'should find expected typos' do
