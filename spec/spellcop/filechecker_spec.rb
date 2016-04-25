@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe Spellcop::FileChecker do
-  context 'ruby_1.rb' do
+  context 'example.rb' do
     before do
       @file = Spellcop::FileChecker.new('spec/files/ruby/example.rb')
       @file.check!
     end
     
     it 'should find typos' do
-      expect(@file.warnings.size).to eq 3
+      expect(@file.warnings.size).to eq 4
     end
     
     it 'should find expected typos' do
-      ['tihs', 'worg', 'wordl'].each_with_index do |typo, index|
+      ['tihs', 'worg', 'wordl', "shoudln't"].each_with_index do |typo, index|
         expect(@file.warnings[index][:word]).to eq typo
       end
     end

@@ -2,7 +2,9 @@ module Spellcop
   IGNORE = [
     'utf', 'param', 'admin', 'github', 'http', 'i18n',
     'klass', 'upsert', 'datetime', 'config', 'gravatar',
-    'rubocop'
+    'rubocop', 'html', 'iphone', 'heroku', 'async', 'backtrace',
+    'richtext', 'rollbar', 'username', 'rspec', 'nginx', 'stylesheet',
+    'threadsafe', 'uuid', 'dyno', 'subdomain'
   ]
   
   class ::String

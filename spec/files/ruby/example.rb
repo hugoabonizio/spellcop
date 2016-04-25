@@ -2,7 +2,7 @@
 
 # encoding: utf-8
 
-# tihs is worg wordl
+# tihs is worg wordl shoudln't
 
 # Welcome to Prawn, the best PDF Generation library ever.
 # This documentation covers user level functionality.

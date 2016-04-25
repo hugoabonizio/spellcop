@@ -12,7 +12,7 @@ module Spellcop
       comments = @file.scan /(\s#(.*)|^#(.*))/
       comments.each do |comment|
         url_removed_comment = comment.first.strip.gsub /https?:\/[^\s]+/, ''
-        words = url_removed_comment.scan /(\w+)/
+        words = url_removed_comment.scan /([\w'-]+)/
         words.each do |result|
           word = result.compact.first
           if !@dict.check? word and !word.spellcop_ignore?
