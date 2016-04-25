@@ -11,10 +11,10 @@ module Spellcop
     def check!
       comments = @file.scan /(\s#(.*)|^#(.*))/
       comments.each do |comment|
-        words = comment.first.strip.scan /@(\w+)|\[(\w+)|(\w+)/
+        url_removed_comment = comment.first.strip.gsub /https?:\/[^\s]+/, ''
+        words = url_removed_comment.scan /(\w+)/
         words.each do |result|
           word = result.compact.first
-#           puts "wrong: #{word}" if word == 'tihs'
           if !@dict.check? word and !word.spellcop_ignore?
             @warnings << { word: word, suggestions: @dict.suggest(word) }
           end
