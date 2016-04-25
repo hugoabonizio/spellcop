@@ -1,7 +1,8 @@
 module Spellcop
   IGNORE = [
     'utf', 'param', 'admin', 'github', 'http', 'i18n',
-    'klass', 'upsert', 'datetime', 'config'
+    'klass', 'upsert', 'datetime', 'config', 'gravatar',
+    'rubocop'
   ]
   
   class ::String

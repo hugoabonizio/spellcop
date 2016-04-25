@@ -20,7 +20,13 @@ module Spellcop
           end
         end
       end
-      @warnings
+      # remove repeated words guessing that if they are being repeated
+      # several times, they aren't typos
+      repeated = Hash.new(0)
+      @warnings.each do |warning|
+        repeated[warning[:word]] += 1
+      end
+      @warnings.select { |warning| repeated[warning[:word]] < 3 }
     end
   end
 end
