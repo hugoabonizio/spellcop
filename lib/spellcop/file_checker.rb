@@ -14,7 +14,7 @@ module Spellcop
         url_removed_comment = comment.first.strip.gsub /https?:\/[^\s]+/, ''
         words = url_removed_comment.scan /([\w'-]+)/
         words.each do |result|
-          word = result.compact.first
+          word = result.compact.first.gsub /^[:']*|[:']*$/, ''
           if !@dict.check? word and !word.spellcop_ignore?
             @warnings << { word: word, suggestions: @dict.suggest(word) }
           end
