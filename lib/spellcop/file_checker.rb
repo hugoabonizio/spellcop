@@ -1,11 +1,11 @@
 module Spellcop
   class FileChecker
     attr_reader :warnings
+    @@dict = FFI::Hunspell.dict('en_US')
     
     def initialize(filename)
       @file = File.read(filename)
       @warnings = []
-      @dict = FFI::Hunspell.dict('en_US')
     end
     
     def check!
@@ -15,8 +15,8 @@ module Spellcop
         words = url_removed_comment.scan /([\w'-]+)/
         words.each do |result|
           word = result.compact.first.gsub /^[:']*|[:']*$/, ''
-          if !@dict.check? word and !word.spellcop_ignore?
-            @warnings << { word: word, suggestions: @dict.suggest(word) }
+          if !@@dict.check? word and !word.spellcop_ignore?
+            @warnings << { word: word, suggestions: @@dict.suggest(word) }
           end
         end
       end
